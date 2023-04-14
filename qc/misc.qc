@@ -511,6 +511,7 @@ float SPAWNFLAG_VOREBALL = 16;
 float SPAWNFLAG_GRENADE = 32;
 float SPAWNFLAG_GIBS = 64;
 float SPAWNFLAG_SILENT = 128;
+float SPAWNFLAG_SHOOT_ACTIVATOR = 16384;
 
 void() ShalMissileTouch = //moved from Shalrath to enable shooter version
 {
@@ -568,11 +569,18 @@ void() spikeshooter_use =
    local entity gnade;
    local entity zgibs;
 
+   local vector shootdir = self.movedir;
+	self.enemy = activator;
+   if (self.spawnflags & SPAWNFLAG_SHOOT_ACTIVATOR)
+   {
+	shootdir = normalize( activator.origin - self.origin);
+   }
+
 	if (self.spawnflags & SPAWNFLAG_LASER)
 	{
       if (!(self.spawnflags & SPAWNFLAG_SILENT))
 		  sound (self, CHAN_VOICE, "enforcer/enfire.wav", 1, ATTN_NORM);
-			LaunchLaser (self.origin, self.movedir);
+			LaunchLaser (self.origin, shootdir);
       newmis.spawnflags = self.spawnflags;
 	}
    else if (self.spawnflags & SPAWNFLAG_LAVABALL)
@@ -586,7 +594,7 @@ void() spikeshooter_use =
       lavaball.solid = SOLID_BBOX;
       lavaball.classname = "lavaball";
       // set lavaball speed
-      lavaball.velocity = self.movedir * 600;  //was 300 dms
+      SetSpeed(lavaball, shootdir, 600);  //was 300 dms
       lavaball.angles = vectoangles(lavaball.velocity);
       lavaball.owner = self;
       lavaball.touch = ShalMissileTouch;
@@ -607,7 +615,7 @@ void() spikeshooter_use =
 		 rockettrap.solid = SOLID_BBOX;
 		 rockettrap.classname = "rockettrap";
 		 // set rocket speed
-		 rockettrap.velocity = self.movedir * 1000;
+		 SetSpeed(rockettrap, shootdir, 1000);
 		 rockettrap.angles = vectoangles(rockettrap.velocity);
 		 rockettrap.owner = self;
 		 rockettrap.touch = T_MissileTouch;
@@ -686,8 +694,7 @@ void() spikeshooter_use =
 	{
   if (!(self.spawnflags & SPAWNFLAG_SILENT))
     sound (self, CHAN_VOICE, "weapons/spike2.wav", 1, ATTN_NORM);
-		launch_spike (self.origin, self.movedir);
-		newmis.velocity = self.movedir * 500;
+		launch_spike2 (self.origin, shootdir, 500);
 		if (self.spawnflags & SPAWNFLAG_SUPERSPIKE)
 			newmis.touch = superspike_touch;
 	}
@@ -716,7 +723,7 @@ void() trap_spikeshooter =
 	if (SUB_Inhibit ())  // new spawnflags for all entities -- iw
 		return;
 
-	if (self.proj_speed_mod <= 0)
+	if (!self.proj_speed_mod)
 		self.proj_speed_mod = 1;
    SetMovedir ();
 	self.use = spikeshooter_use;
