@@ -450,7 +450,7 @@ float() OgreCheckAttack =
 			return TRUE;
 		}
 
-	if (enemy_range == RANGE_MELEE)
+	if (enemy_range == RANGE_MELEE && self.damage_mod_melee != -1)
 	{
 		if (CanDamage (self.enemy, self))
 		{
@@ -464,7 +464,9 @@ float() OgreCheckAttack =
 
 	if (!enemy_vis)
 		return FALSE;
-
+	
+	if (self.damage_mod_ranged == -1)
+		return FALSE;
 	targ = self.enemy;
 
 // see if any entities are in the way of the shot

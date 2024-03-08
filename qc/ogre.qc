@@ -1368,6 +1368,10 @@ void() monster_ogre =
 	{
 		self.proj_speed_mod = 1;
 	}
+	if (!self.damage_mod_ranged)
+	{
+		self.damage_mod_ranged = 1;
+	}
 	if (!self.health) //thanks RennyC -- dumptruck_ds
 	self.health = 200;
 
@@ -1383,8 +1387,11 @@ void() monster_ogre =
 	}
 	self.th_die = ogre_die;
 	self.th_melee = ogre_melee;
-	self.th_missile = ogre_nail1;
-	self.th_turret = ogre_turret_attack1; //dumptruck_ds
+	if (self.damage_mod_ranged != -1)
+	{
+		self.th_missile = ogre_nail1;
+		self.th_turret = ogre_turret_attack1; //dumptruck_ds
+	}
 	if !(self.berserk) //Berserk test from http://celephais.net/board/view_thread.php?id=4&start=3465 -- dumptruck_ds
 	self.th_pain = ogre_pain;
 	else
