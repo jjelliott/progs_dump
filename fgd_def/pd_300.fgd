@@ -724,6 +724,31 @@ style(Choices) : "Attack type" =
 		5 : "nails (rapid fire)"
 	]
 ]
+@PointClass base(Monster, Berserk, CustomMdls, Turret) size(-16 -16 -24, 16 16 40) model(
+		{{
+        mdl_body -> {"path" : mdl_body, "skin" : skin}, {"path": "progs/lguard.mdl" , "skin" : skin}
+    }}
+	) = monster_lguard : "Light Guard
+
+Default health = 25"
+[
+keep_ammo(integer) : "Don't drop backpack" : : "Don't drop backpack upon death"
+snd_death(string) : "Path to custom death sound" : : "Path to custom death sound"
+snd_pain(string) : "Path to custom pain sound" : : "Path to custom pain sound"
+snd_sight(string) : "Path to custom sight sound" : : "Path to custom sight sound"
+snd_attack(string) : "Path to custom attack sound (GUNSHOT)" : : "Path to custom attack sound (GUNSHOT)"
+snd_idle(string) : "Path to custom idle sound" : : "Path to custom idle sound"
+snd_misc(string) : "Path to custom sound (PAIN 2)" : : "Path to custom sound (PAIN 2)"
+style(Choices) : "Attack type" =
+	[
+		0 : "Default (shotgun)"
+		1	: "rockets"
+		2 : "grenades"
+		3 : "lasers"
+		4 : "nails (single fire)"
+		5 : "nails (rapid fire)"
+	]
+]
 // @PointClass base(Monster, Berserk, CustomMdlsWizSham) size(-32 -32 -24, 32 32 40) model({ "path": ":progs/dog.mdl" }) = monster_dog : "Nasty Doggie
 @PointClass base(Monster, Berserk, CustomMdlsWizSham) size(-32 -32 -24, 32 32 40) model(
 	{{

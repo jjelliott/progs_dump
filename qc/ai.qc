@@ -328,6 +328,14 @@ void() SightSound =
 		sound_sight (self, CHAN_VOICE, "shalrath/sight.wav", 1, ATTN_NORM);
 	else if (self.classname == "monster_oldone2")  //dumptruck_ds added Shub sighting SFX
 		sound_sight (self, CHAN_VOICE, "boss2/sight.wav", 1, ATTN_NONE);
+	else if (self.classname == "monster_lguard")
+	{
+		rsnd = rint(random()*2);
+		if (rsnd < 1)
+			sound_sight(self, CHAN_VOICE, "lguard/solsght1.wav", 1, ATTN_NONE);
+		else 
+			sound_sight(self, CHAN_VOICE, "lguard/solsrch1.wav", 1, ATTN_NONE);
+	}
 };
 
 void() FoundTarget =
