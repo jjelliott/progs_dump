@@ -322,6 +322,14 @@ void() SightSound =
 		else
 			sound_misc2 (self, CHAN_VOICE, "enforcer/sight4.wav", 1, ATTN_NORM);
 	}
+	else if (self.classname == "monster_imp")
+	{
+		if (random() < 0.5){	
+			sound_sight (self, CHAN_VOICE, "imp/sight1.wav", 1, ATTN_NORM); //dumptruck_ds
+		}
+		else 
+			sound_misc (self, CHAN_VOICE, "imp/sight2.wav", 1, ATTN_NORM);
+	}
 	else if (self.classname == "monster_army")
 		sound_sight (self, CHAN_VOICE, "soldier/sight1.wav", 1, ATTN_NORM);
 	else if (self.classname == "monster_shalrath")
