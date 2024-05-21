@@ -241,7 +241,7 @@ void()	lguard_run8	=[	$run08,		lguard_run3	] {ai_run(15);};
 
 
 void() lguard_atk6;
-void()	lguard_atk1	=[	$attak101,	lguard_atk2	] {ai_face();self.count = 0;self.t_length= 4 + floor(random()*4);};
+void()	lguard_atk1	=[	$attak101,	lguard_atk2	] {ai_face();self.count = 0;self.t_length= 4 + floor(random()*7);};
 void()	lguard_atk2	=[	$attak102,	lguard_atk3	] {ai_face();};
 void()	lguard_atk3	={
 	self.frame = $attak103;
@@ -266,6 +266,38 @@ void()	lguard_atk9	=[	$attak109,	lguard_atk10	] {ai_face();};
 void() lguard_atk10 = [$attak110, lguard_atk11] {ai_face();};
 void() lguard_atk11 = [$attak111, lguard_atk12] {ai_face();};
 void() lguard_atk12 = [$attak112, lguard_run1] {ai_face();};
+void() lguard_atk2_6;
+void()	lguard_atk2_1	=[	$attak201,	lguard_atk2_2	] {ai_face();self.count = 0;self.t_length= 4 + floor(random()*4);};
+void()	lguard_atk2_2	=[	$attak202,	lguard_atk2_3	] {ai_face();};
+void()	lguard_atk2_3	=[	$attak203,	lguard_atk2_4	] {ai_face();};
+void()	lguard_atk2_4	=[	$attak204,	lguard_atk2_5	] {ai_face();};
+void()	lguard_atk2_5	={
+	self.frame = $attak205;
+	self.nextthink = time + .1;
+	if (self.style == 5 && self.count < self.t_length)
+	{
+	  self.count +=1;
+	}
+	else
+	{
+	  self.think = lguard_atk2_6;
+	}
+	ai_face();
+	lguard_fire();
+	self.effects = self.effects | EF_MUZZLEFLASH;};
+void()	lguard_atk2_6	=[	$attak206,	lguard_atk2_7	] {ai_face();};
+void()	lguard_atk2_7	=[	$attak207,	lguard_atk2_8	] {ai_face();SUB_CheckRefire (lguard_atk1);};
+void()	lguard_atk2_8	=[	$attak208,	lguard_atk2_9	] {ai_face();};
+void()	lguard_atk2_9	=[	$attak209,	lguard_atk2_10	] {ai_face();};
+void() lguard_atk2_10 = [$attak210, lguard_atk2_11] {ai_face();};
+void() lguard_atk2_11 = [$attak211, lguard_atk2_12] {ai_face();};
+void() lguard_atk2_12 = [$attak212, lguard_atk2_13] {ai_face();};
+void() lguard_atk2_13 = [$attak213, lguard_atk2_14] {ai_face();};
+void() lguard_atk2_14 = [$attak214, lguard_atk2_15] {ai_face();};
+void() lguard_atk2_15 = [$attak215, lguard_atk2_16] {ai_face();};
+void() lguard_atk2_16 = [$attak216, lguard_atk2_17] {ai_face();};
+void() lguard_atk2_17 = [$attak217, lguard_atk2_18] {ai_face();};
+void() lguard_atk2_18 = [$attak218, lguard_run1] {ai_face();};
 // new frames for turrets
 void() lguard_turret_atk6;
 void()	lguard_turret_atk1	=[	$attak101,	lguard_turret_atk2	] {ai_face();self.count = 0;self.t_length= 4 + floor(random()*4);};
@@ -361,13 +393,9 @@ void(entity attacker, float damage)	lguard_pain =
 		return;
 
 
-	if (damage > self.health * 0.4){
-		r = 1;
-	} else {
 	    r = random();
-	}
 
-	if (r < 0.3)
+	if (r < 0.3 || ((damage > self.health *0.4) && r < 0.25))
 	{  // turret checks moved here to play pain sounds correctly - dumptruck_ds
 		self.pain_finished = time + 0.6;
 		sound_pain (self, CHAN_VOICE, "lguard/solpain1.wav", 1, ATTN_NORM);
@@ -376,7 +404,7 @@ void(entity attacker, float damage)	lguard_pain =
 		else
 		lguard_pain1 ();
 	}
-	else if (r < 0.6)
+	else if (r < 0.6 || ((damage > self.health *0.4) && r < 0.5))
 	{
 		self.pain_finished = time + .8;
 		sound_misc (self, CHAN_VOICE, "lguard/solpain1.wav", 1, ATTN_NORM);
@@ -385,7 +413,7 @@ void(entity attacker, float damage)	lguard_pain =
 		else
 		lguard_painb1 ();
 	}
-	else if (r < 0.8)
+	else if (r < 0.8 || ((damage > self.health *0.4) && r < 0.7))
 	{
 		self.pain_finished = time + 1.8;
 		sound_misc (self, CHAN_VOICE, "lguard/solpain2.wav", 1, ATTN_NORM);
@@ -716,7 +744,11 @@ void() monster_lguard =
 	{
 		self.th_run = lguard_run1;
 	}
+	if (self.style == 3){
+		self.th_missile = lguard_atk2_1;
+	} else {
 	self.th_missile = lguard_atk1;
+	}
 	self.th_turret = lguard_turret_atk1;
 	if !(self.berserk) //Berserk test from http://celephais.net/board/view_thread.php?id=4&start=3465 -- dumptruck_ds
 	self.th_pain = lguard_pain;
