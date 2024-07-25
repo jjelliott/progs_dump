@@ -18,9 +18,10 @@ screenshots/
 /*.png
 /*.pcx
 /*.tga
-maps/TEST_*
-maps/test_*
 /*.map
 /*.bsp
 /*.lit
 imgui.ini
+
+TEST_*
+test_*

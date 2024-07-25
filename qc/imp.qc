@@ -11,18 +11,23 @@ $origin 0 -6 24
 $base base
 $skin skin
 
-$frame idle 
+$frame idle1 idle2 idle3 idle4 idle5 idle6 idle7 idle8 idle9 
 
-$frame walk2 walk3 walk4 walk1 
+$frame walk1 walk2 walk3 walk4 walk5 walk6 walk7 walk8 walk9 walk10 walk11 walk12 walk13 walk14 walk15 walk16 walk17 walk18
+
+$frame paina1 paina2 paina3 paina4 paina5 paina6 
+$frame painb1 painb2 painb3 painb4 painb5 painb6 painb7
+$frame painc1 painc2 painc3 painc4 painc5 painc6 
+
+$frame die1 die2 die3 die4 die5 die6 die7 
+$frame run1 run2 run3 run4 run5 run6 run7 run8 run9
 $frame atk1 atk2 atk3 atk4 atk5 
-$frame pain1 pain2
-$frame die1 die2 die3 die4 die5 die6 
 
 void() LaunchFireball =
 {
 	local vector vec = self.enemy.origin - self.origin - '0 0 16';
-	local vector org = self.origin + v_forward * 30 + v_right * -12 + '0 0 32';
-	local float projspeed = self.proj_speed_mod * 800;
+	local vector org = self.origin + v_forward * 30 + v_right * -12 + '0 0 16';
+	local float projspeed = self.proj_speed_mod * 400;
 
 	sound_attack (self, CHAN_WEAPON, "imp/fireball.wav", 1, ATTN_NORM);
 
@@ -48,11 +53,11 @@ void() LaunchFireball =
 
 	if (!newmis.skin_proj) // dumptruck_ds
 	{
-			newmis.skin = self.skin_proj;
-		}
-		else
-		{
-			newmis.skin = 0;
+		newmis.skin = self.skin_proj;
+	}
+	else
+	{
+		newmis.skin = 0;
 	}
 	// setmodel (newmis, "progs/laser.mdl");
 	setsize (newmis, '0 0 0', '0 0 0');
@@ -75,24 +80,49 @@ void() LaunchFireball =
 
 //============================================================================
 
-void()	imp_stand1	=[	$idle,	imp_stand1	] {ai_stand();};
+void()	imp_stand1	=[	$idle1,	imp_stand2	] {ai_stand();};
+void()	imp_stand2	=[	$idle2,	imp_stand3	] {ai_stand();};
+void()	imp_stand3	=[	$idle3,	imp_stand4	] {ai_stand();};
+void()	imp_stand4	=[	$idle4,	imp_stand5	] {ai_stand();};
+void()	imp_stand5	=[	$idle5,	imp_stand6	] {ai_stand();};
+void()	imp_stand6	=[	$idle6,	imp_stand7	] {ai_stand();};
+void()	imp_stand7	=[	$idle7,	imp_stand8	] {ai_stand();};
+void()	imp_stand8	=[	$idle8,	imp_stand9	] {ai_stand();};
+void()	imp_stand9	=[	$idle9,	imp_stand1	] {ai_stand();};
 
 void()	imp_walk1	=[	$walk1 ,	imp_walk2	] {
 if (random() < 0.2)
 	sound_idle (self, CHAN_VOICE, "imp/idle.wav", 1, ATTN_IDLE); //dumptruck_ds
-ai_walk(12);
-self.nextthink = time + .4;};
-void()	imp_walk2	=[	$walk2 ,	imp_walk3	] {ai_walk(12); self.nextthink = time + .4;};
-void()	imp_walk3	=[	$walk3 ,	imp_walk4	] {ai_walk(12); self.nextthink = time + .4;};
-void()	imp_walk4	=[	$walk4,		imp_walk1	] {ai_walk(12); self.nextthink = time + .4;};
-void()	imp_run1	=[	$walk1 ,	imp_run2	] {
+ai_walk(1);};
+void()	imp_walk2	=[	$walk2 ,	imp_walk3	] {ai_walk(2);};
+void()	imp_walk3	=[	$walk3 ,	imp_walk4	] {ai_walk(2);};
+void()	imp_walk4	=[	$walk4,		imp_walk5	] {ai_walk(3);};
+void()	imp_walk5	=[	$walk5,		imp_walk6	] {ai_walk(3);};
+void()	imp_walk6	=[	$walk6,		imp_walk7	] {ai_walk(0);};
+void()	imp_walk7	=[	$walk7,		imp_walk8	] {ai_walk(0);};
+void()	imp_walk8	=[	$walk8,		imp_walk9	] {ai_walk(3);};
+void()	imp_walk9	=[	$walk9,		imp_walk10	] {ai_walk(1);};
+void()	imp_walk10	=[	$walk10,		imp_walk11	] {ai_walk(1);};
+void()	imp_walk11	=[	$walk11,		imp_walk12	] {ai_walk(2);};
+void()	imp_walk12	=[	$walk12,		imp_walk13	] {ai_walk(3);};
+void()	imp_walk13	=[	$walk13,		imp_walk14	] {ai_walk(3);};
+void()	imp_walk14	=[	$walk14,		imp_walk15	] {ai_walk(0);};
+void()	imp_walk15	=[	$walk15,		imp_walk16	] {ai_walk(0);};
+void()	imp_walk16	=[	$walk16,		imp_walk1	] {ai_walk(3);};
+
+void()	imp_run1	=[	$run1 ,	imp_run2	] {
 	if (random() < 0.2)
 		sound_idle (self, CHAN_VOICE, "imp/idle.wav", 1, ATTN_IDLE); //dumptruck_ds
-	ai_run(12);
+	ai_run(6);
 };
-	void()	imp_run2	=[	$walk2 ,	imp_run3	] {ai_run(12); };
-	void()	imp_run3	=[	$walk3 ,	imp_run4	] {ai_run(12); };
-	void()	imp_run4	=[	$walk4 ,	imp_run1	] {ai_run(12);};
+	void()	imp_run2	=[	$run2 ,	imp_run3	] {ai_run(10); };
+	void()	imp_run3	=[	$run3 ,	imp_run4	] {ai_run(6); };
+	void()	imp_run4	=[	$run4 ,	imp_run5	] {ai_run(6);};
+	void()	imp_run5	=[	$run5 ,	imp_run6	] {ai_run(6);};
+	void()	imp_run6	=[	$run6 ,	imp_run7	] {ai_run(10);};
+	void()	imp_run7	=[	$run7 ,	imp_run8	] {ai_run(6);}
+	void()	imp_run8	=[	$run8 ,	imp_run1	] {ai_run(6);};
+	void()	imp_run9	=[	$run9 ,	imp_run1	] {ai_run(0);};
 void()	imp_atk1	=[	$atk1,	imp_atk2	] {ai_face();};
 void()	imp_atk2	=[	$atk2,	imp_atk3	] {ai_face();};
 void()	imp_atk3	=[	$atk3,	imp_atk4	] {ai_face();};
@@ -175,11 +205,34 @@ void()	imp_atk5	=[	$atk5,	imp_run1	] {ai_face();};
 ////////////////////////////
 // new frames for turret mode END
 ////////////////////////////
-void()	imp_paina1	=[	$pain1,	imp_paina2	] {};
-void()	imp_paina2	=[	$pain2,	imp_run1	] {};
-
+void()	imp_paina1	=[	$paina1,	imp_paina2	] {};
+void()	imp_paina2	=[	$paina2,	imp_paina3	] {};
+void()	imp_paina3	=[	$paina3,	imp_paina4	] {};
+void()	imp_paina4	=[	$paina4,	imp_paina5	] {};
+void()	imp_paina5	=[	$paina5,	imp_paina6	] {};
+void()	imp_paina6	=[	$paina6,	imp_run1	] {};
+void()	imp_painb1	=[	$painb1,	imp_painb2	] {};
+void()	imp_painb2	=[	$painb2,	imp_painb3	] {};
+void()	imp_painb3	=[	$painb3,	imp_painb4	] {};
+void()	imp_painb4	=[	$painb4,	imp_painb5	] {};
+void()	imp_painb5	=[	$painb5,	imp_painb6	] {};
+void()	imp_painb6	=[	$painb6,	imp_painb7	] {};
+void()	imp_painb7	=[	$painb7,	imp_run1	] {};
+void()	imp_painc1	=[	$painc1,	imp_painc2	] {};
+void()	imp_painc2	=[	$painc2,	imp_painc3	] {};
+void()	imp_painc3	=[	$painc3,	imp_painc4	] {};
+void()	imp_painc4	=[	$painc4,	imp_painc5	] {};
+void()	imp_painc5	=[	$painc5,	imp_painc6	] {};
+void()	imp_painc6	=[	$painc6,	imp_run1	] {};
 void(entity attacker, float damage) imp_pain = {
+	if (self.pain_finished > time) return;
+	self.pain_finished = time + 1;
+	if (random() < 0.33)
 	imp_paina1();
+	else if (random() < .66)
+	imp_painb1();
+	else 
+	imp_painc1();
 };
 
 
@@ -192,7 +245,8 @@ void()	imp_die3	=[	$die3,	imp_die4	]
 };
 void()	imp_die4	=[	$die4,	imp_die5	] {ai_forward(14);};
 void()	imp_die5	=[	$die5,	imp_die6	] {ai_forward(2);};
-void()	imp_die6	=[	$die6,	imp_die6	] {};
+void()	imp_die6	=[	$die6,	imp_die7	] {};
+void()	imp_die7	=[	$die7,	imp_die7	] {};
 
 void() imp_die =
 {
@@ -240,7 +294,7 @@ void() imp_die =
 	}
 
 // regular death
-if (random() > 0.5)
+	if (random() > 0.5)
 	sound_death (self, CHAN_VOICE, "imp/die1.wav", 1, ATTN_NORM); //dumptruck_ds
 	else
 	sound_death (self, CHAN_VOICE, "imp/die2.wav", 1, ATTN_NORM); //dumptruck_ds
@@ -335,7 +389,7 @@ void() monster_imp =
 	if (self.style >= 6)
 		objerror("style key set too high\n");
 
-	precache_body_model ("progs/imp.mdl");  // custom_mdls function -- dumptruck_ds
+	precache_body_model ("progs/imp-rerigged.mdl");  // custom_mdls function -- dumptruck_ds
 	precache_head_model ("progs/h_mega.mdl");
 	precache_proj_model ("progs/impball.spr");
  //dumptruck_ds
@@ -357,10 +411,10 @@ void() monster_imp =
 	self.solid = SOLID_SLIDEBOX;
 	self.movetype = MOVETYPE_STEP;
 
-	body_model ("progs/imp.mdl"); // SPIKE to the RESCUE!!!! - got this fixed. -- dumptruck_ds
+	body_model ("progs/imp-rerigged.mdl"); // SPIKE to the RESCUE!!!! - got this fixed. -- dumptruck_ds
 	// // setmodel (self, "progs/enforcer.mdl"); //orginal dumptruck_ds
 
-	setsize (self, '-16 -16 0', '16 16 64');
+	setsize (self, '-16 -16 -24', '16 16 40');
 
 	if (!self.proj_speed_mod)
 	{
