@@ -1,0 +1,13 @@
+// entity 0
+{
+"classname" "monster_imp"
+"origin" "-128 64 24"
+"angle" "180"
+"mdl_body" "progs/imp-rerigged.mdl"
+"target" "pc1"
+"mdl_proj" "progs/nimpball.spr"
+"damage_mod" "1.4"
+"alpha" ".7"
+"skin" "1"
+"health" "200"
+}
