@@ -73,3 +73,5 @@ nightmare_imp.qc
 dshell_small.qc
 dshell_large.qc
 q2shell.qc
+tesla.qc
+takedamage.qc

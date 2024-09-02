@@ -492,6 +492,28 @@ void(string gibname, float dm) ThrowGib =
 	new.flags = 0;
 };
 
+void(string gibname, float dm, float skinIdx) ThrowGib2 =
+{
+	local	entity new;
+
+	new = spawn();
+	new.origin = self.origin;
+	setmodel (new, gibname);
+	setsize (new, '0 0 0', '0 0 0');
+	new.velocity = VelocityForDamage (dm);
+	new.movetype = MOVETYPE_BOUNCE;
+	new.solid = SOLID_NOT;
+	new.skin = skinIdx;
+	new.avelocity_x = random()*600;
+	new.avelocity_y = random()*600;
+	new.avelocity_z = random()*600;
+	new.think = SUB_Remove;
+	new.ltime = time;
+	new.nextthink = time + 10 + random()*10;
+	new.frame = 0;
+	new.flags = 0;
+};
+
 void(string gibname, float dm) ThrowHead =
 {
 	setmodel (self, gibname);
