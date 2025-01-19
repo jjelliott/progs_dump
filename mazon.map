@@ -4,7 +4,7 @@
 {
 "mapversion" "220"
 "classname" "worldspawn"
-"wad" "../rerelease/id1/pak0/wads/textures.wad;../rerelease/id1/pak0/wads/metal.wad"
+"wad" "../rerelease/id1/pak0/wads/textures.wad;../rerelease/id1/pak0/wads/metal.wad;..\id1_rerel\pak0\wads\textures.wad;..\id1_rerel\pak0\wads\metal.wad"
 "_tb_def" "external:progs_dump/fgd_def/pd_300.fgd"
 "_tb_mod" "progs_dump"
 // brush 0
