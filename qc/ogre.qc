@@ -1259,6 +1259,99 @@ void() ogre_melee =
 };
 
 
+/*
+===========
+OgreSightSound
+
+Declares correct sight sound
+============
+*/
+void() OgreSightSound = 
+{
+	sound_sight (self, CHAN_VOICE, "ogre/ogwake.wav", 1, ATTN_NORM);
+}
+
+/*
+===========
+OgreCheckAttack
+
+The player is in view, so decide to move or launch an attack
+Returns FALSE if movement should continue
+============
+*/
+float() OgreCheckAttack =
+{
+	local vector	spot1, spot2;
+	local entity	targ;
+	local float		chance;
+
+	// dprint("OgreCheckAttack\n");
+	if (self.spawnflags & I_AM_TURRET) //dumptruck_ds
+		{
+			self.attack_state = AS_MISSILE;
+			SUB_AttackFinished (2 + 2*random());
+			return TRUE;
+		}
+
+	if (enemy_range == RANGE_MELEE)
+	{
+		if (CanDamage (self.enemy, self))
+		{
+			self.attack_state = AS_MELEE;
+			return TRUE;
+		}
+	}
+
+	if (time < self.attack_finished)
+		return FALSE;
+
+	if (!enemy_vis)
+		return FALSE;
+
+	targ = self.enemy;
+
+// see if any entities are in the way of the shot
+	spot1 = self.origin + self.view_ofs;
+	spot2 = targ.origin + targ.view_ofs;
+
+	traceline (spot1, spot2, FALSE, self);
+
+	if (trace_inopen && trace_inwater)
+		return FALSE;			// sight line crossed contents
+
+	if ((self.spawnflags & I_AM_TURRET) && (trace_ent != targ))
+	{
+		// dprint("trace_ent...\n");
+		self.attack_state = AS_TURRET;
+		return FALSE;
+	}
+
+	if (trace_ent != targ)
+	{
+		return FALSE;	// don't have a clear shot
+	}
+
+
+// missile attack
+	if (time < self.attack_finished)
+		return FALSE;
+
+	if (enemy_range == RANGE_FAR)
+		return FALSE;
+
+	else if (enemy_range == RANGE_NEAR)
+		chance = 0.10;
+	else if (enemy_range == RANGE_MID)
+		chance = 0.05;
+	else
+		chance = 0;
+
+	self.attack_state = AS_MISSILE;
+	SUB_AttackFinished (1 + 2*random());
+	return TRUE;
+};
+
+
 /*QUAKED monster_ogre (1 0 0) (-32 -32 -24) (32 32 64) AMBUSH X X TRIGGER_SPAWNED X X X X NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD_OR_NIGHTMARE NOT_IN_DEATHMATCH NOT_IN_COOP NOT_IN_SINGLEPLAYER X NOT_ON_HARD_ONLY NOT_ON_NIGHTMARE_ONLY
 {
 	model ("progs/ogre.mdl");
@@ -1393,6 +1486,8 @@ void() monster_ogre =
 	self.th_pain = ogre_pain;
 	else
 	self.th_pain = SUB_NullPain;
+	self.th_checkattack = OgreCheckAttack;
+	self.th_sight = OgreSightSound;
 
 	walkmonster_start();
 };
@@ -1518,6 +1613,8 @@ void() monster_ogre_marksman =
 	self.th_pain = ogre_pain;
 	else
 	self.th_pain = SUB_NullPain;
+	self.th_checkattack = OgreCheckAttack;
+	self.th_sight = OgreSightSound;
 
 	walkmonster_start();
 };

@@ -835,6 +835,22 @@ void() enf_die =
 		enf_fdie1 ();
 };
 
+void() EnforcerSightSound = 
+{
+	
+	local float	rsnd;
+	rsnd = rint(random() * 3);
+	if (rsnd == 1)
+		sound_sight (self, CHAN_VOICE, "enforcer/sight1.wav", 1, ATTN_NORM); //dumptruck_ds
+	else if (rsnd == 2)
+		sound_misc (self, CHAN_VOICE, "enforcer/sight2.wav", 1, ATTN_NORM);
+	else if (rsnd == 0)
+		sound_misc1 (self, CHAN_VOICE, "enforcer/sight3.wav", 1, ATTN_NORM);
+	else
+		sound_misc2 (self, CHAN_VOICE, "enforcer/sight4.wav", 1, ATTN_NORM);
+}
+
+
 
 /*QUAKED monster_enforcer (1 0 0) (-16 -16 -24) (16 16 40) AMBUSH X X TRIGGER_SPAWNED X X X X NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD_OR_NIGHTMARE NOT_IN_DEATHMATCH NOT_IN_COOP NOT_IN_SINGLEPLAYER X NOT_ON_HARD_ONLY NOT_ON_NIGHTMARE_ONLY
 {
@@ -997,6 +1013,7 @@ void() monster_enforcer =
 			}
 			self.th_missile = enf_4atk1;
 		}
+	self.th_sight = EnforcerSightSound;
 	walkmonster_start();
 };
 

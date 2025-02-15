@@ -465,6 +465,8 @@ float	known_release;	// unique id for a release; see values above -- iw
 .void()		th_melee;
 .void(entity attacker, float damage)		th_pain;
 .void()		th_die;
+.void()     th_sight;
+.float()    th_checkattack;
 
 .entity		oldenemy;		// mad at this player before taking damage
 

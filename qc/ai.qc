@@ -288,12 +288,12 @@ void() SightSound =
 {
 	if !(self.spawnflags & PASSIVE_ALWAYS)
 
-	local float	rsnd;
 
-	if (self.classname == "monster_ogre")
-		sound_sight (self, CHAN_VOICE, "ogre/ogwake.wav", 1, ATTN_NORM);
-	else if (self.classname == "monster_ogre_marksman")
-		sound_sight (self, CHAN_VOICE, "ogre/ogwake.wav", 1, ATTN_NORM);
+	if (self.th_sight)
+	{
+		dprint("Using th_sight\n");
+		self.th_sight();
+	}
 	else if (self.classname == "monster_knight")
 		sound_sight (self, CHAN_VOICE, "knight/ksight.wav", 1, ATTN_NORM);
 	else if (self.classname == "monster_shambler")
@@ -310,18 +310,6 @@ void() SightSound =
 		sound_sight (self, CHAN_VOICE, "hknight/sight1.wav", 1, ATTN_NORM);
 	else if (self.classname == "monster_tarbaby")
 		sound_sight (self, CHAN_VOICE, "blob/sight1.wav", 1, ATTN_NORM);
-	else if (self.classname == "monster_enforcer")
-	{
-		rsnd = rint(random() * 3);
-		if (rsnd == 1)
-			sound_sight (self, CHAN_VOICE, "enforcer/sight1.wav", 1, ATTN_NORM); //dumptruck_ds
-		else if (rsnd == 2)
-			sound_misc (self, CHAN_VOICE, "enforcer/sight2.wav", 1, ATTN_NORM);
-		else if (rsnd == 0)
-			sound_misc1 (self, CHAN_VOICE, "enforcer/sight3.wav", 1, ATTN_NORM);
-		else
-			sound_misc2 (self, CHAN_VOICE, "enforcer/sight4.wav", 1, ATTN_NORM);
-	}
 	else if (self.classname == "monster_army")
 		sound_sight (self, CHAN_VOICE, "soldier/sight1.wav", 1, ATTN_NORM);
 	else if (self.classname == "monster_shalrath")
@@ -626,10 +614,10 @@ float() CheckAnyAttack =
 
 	if (!enemy_vis)
 		return FALSE;
+	if (self.th_checkattack)
+		return self.th_checkattack();
 	if (self.classname == "monster_army")
 		return SoldierCheckAttack ();
-	if ((self.classname == "monster_ogre") || (self.classname == "monster_ogre_marksman"))
-		return OgreCheckAttack ();
 	if (self.classname == "monster_shambler")
 		return ShamCheckAttack ();
 	if (self.classname == "monster_demon1")
