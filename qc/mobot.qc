@@ -418,10 +418,16 @@ if (self.style == 12) // spawn a Shalrath
 	// bot.nextthink = time + 0.1 + random();
 	if (!(self.spawnflags & MOBOT_DONT_SPAWN_ANGRY))
 	{
+		
 		if (bot.classname != "monster_zombie") // required to avoid animation issues -- dumptruck_ds
-			bot.think = monster_use;
+		{
+			bot.enemy = self.enemy;	
+			bot.think = bot.th_run;
+		}		
 		else
+		{
 			bot.think = bot.th_walk;
+		}
 	}
 	else
 	{
@@ -432,9 +438,19 @@ if (self.style == 12) // spawn a Shalrath
 		monster_update_total (1); // repacement function from iw -- dumptruck_ds
 	}
 };
+void() start_mobot_think = 
+{
+	self.enemy = activator;
+	self.think = think_mobot; // qthink I didn't realize I could do this! -- dumptruck_ds
+	if !(self.wait)
+			self.nextthink = time + 5;
+			else
+			self.nextthink = time + self.wait;
+};
 
 void() think_mobot =
 	{
+		
 		dprint("mobot thinking\n");
 		local entity  nearby; // telefrag check thanks to ryanscissorhands for this code! -- dumptruck_ds
 
@@ -529,5 +545,5 @@ void() func_monster_spawner =
 	self.count = self.count + 1; // fixes count display
 	self.cnt = self.count; // hold original count
 
-	self.use = think_mobot;
+	self.use = start_mobot_think;
 };
