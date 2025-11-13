@@ -6,6 +6,7 @@
     import CardBody from "$components/CardBody.svelte"
     import Columns from "$components/Columns.svelte"
     import Column from "$components/Column.svelte"
+		import Image from '$components/Image.svelte';
 </script>
 <Page>
     <h1>What is progs_dump?</h1>
@@ -18,7 +19,7 @@
         sample levels. Only a few of these have monsters and not every feature is shown but the majority are.</p>
     <Card>
         <div class="card-image">
-            <img style="width:100%" alt="start map picture" src="/what-is-it/startmap.png"/>
+            <Image alt="start map picture" src="/what-is-it/startmap.png"/>
         </div>
         <div class="card-footer">Many maps demonstrating the new features are available from the start map.</div>
     </Card>
