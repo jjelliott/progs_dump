@@ -1,6 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
-
+	import { resolve } from '$app/paths';
 	let { children } = $props();
 </script>
 
@@ -9,12 +9,12 @@
 </svelte:head>
 <nav class="navbar p-centered mx-2">
 	<section class="navbar-section">
-		<a class="navbar-brand" href="/"><img alt="progs_dump" src="/pd_words.png"></a>
+		<a class="navbar-brand" href={resolve("/")}><img alt="progs_dump" src="/pd_words.png"></a>
 		<div class="col-mx-auto"></div>
-		<a class="btn btn-link" href="/what-is-it">What is it?</a>
-		<a class="btn btn-link" href="/manual">Manual</a>
-		<a class="btn btn-link" href="/download">Download</a>
-		<a class="btn btn-link" href="/credits">Credits</a>
+		<a class="btn btn-link" href={resolve("/what-is-it")}>What is it?</a>
+		<a class="btn btn-link" href={resolve("/manual")}>Manual</a>
+		<a class="btn btn-link" href={resolve("/download")}>Download</a>
+		<a class="btn btn-link" href={resolve("/credits")}>Credits</a>
 	</section>
 </nav>
 <div class="divider"></div>
