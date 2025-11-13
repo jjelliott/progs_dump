@@ -1,8 +1,6 @@
 <script>
     import ManualNavLink from "../ManualNavLink.svelte";
     let {singlePage} = $props();
-
-		console.log(`manualnav singlePage: ${singlePage}`);
 </script>
 <ManualNavLink page="/manual/monsters" tag="#monsters" tagOnly={singlePage}>Monsters</ManualNavLink>
 <ManualNavLink page="/manual/monsters" tag="#monster-behavior-keys" tagOnly={singlePage} indent={1}>Behavior Modifiers</ManualNavLink>

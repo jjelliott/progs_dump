@@ -4,7 +4,6 @@
     import MonstersNav from "./monsters/nav.svelte";
 
     let {singlePage = false} = $props();
-		console.log(`manualnav singlePage: ${singlePage}`);
 </script>
 
 <nav>

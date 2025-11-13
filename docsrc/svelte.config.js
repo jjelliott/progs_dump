@@ -15,7 +15,7 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			// fallback: undefined,
+			fallback: undefined,
 			precompress: false,
 			strict: true
 		}),
