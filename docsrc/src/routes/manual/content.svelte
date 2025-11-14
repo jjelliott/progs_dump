@@ -1,5 +1,6 @@
 <script>
-import Card from "$components/Card.svelte";
+	import {resolve} from '$app/paths';
+	import Card from "$components/Card.svelte";
 import CardBody from "$components/CardBody.svelte";
 </script>
 
@@ -17,7 +18,7 @@ import CardBody from "$components/CardBody.svelte";
         This directory will be a learning tool and reference for the features of the dev kit. Play it like any other
         Quake mod using the start map to explore a hub with sample maps.
         <br/>
-        The <a href="/manual/devfolder">development folder</a> contains the FGD and DEF files that allow JACK,
+        The <a href={resolve("/manual/devfolder")}>development folder</a> contains the FGD and DEF files that allow JACK,
         TrenchBroom and other editors to use the features of the devkit. Please refer to your map editor documentation
         for information on how to load mods and FGD files. In addition, there is a wad file that you can use to load the
         textures used in the sample maps. The QuakeC source code is included as well.
@@ -63,7 +64,7 @@ Good luck and happy modding!
         <em>nomonsters</em> to 1 in the console and enter <em>restart</em> to relaunch your current map without monsters.</li>
     <li>To check what version of the dev kit you are running, type <em>impulse 100</em> in the console.</li>
     <li>While using the <em>noclip</em> command, you will not collide with item pickups and many triggers.</li>
-    <li>The cheat code <em>impulse 9</em> will give the player any <a href="/manual/keys">custom keys</a> used in the current map in addition to all ammo, weapons and standard keys.</li>
+    <li>The cheat code <em>impulse 9</em> will give the player any <a href={resolve("/manual/keys")}>custom keys</a> used in the current map in addition to all ammo, weapons and standard keys.</li>
     <li>Triggers that feature the <em>message</em> key have a new spawnflag <em>Message All Players</em>. This is useful for co-op gameplay if it’s important that every player get the message.</li>
     <li>The FGDs are not included in the my_mod folder since they aren’t required to play your mod. For more info on loading FGDs, refer to the documentation for your editor of choice.</li>
 </ul>
