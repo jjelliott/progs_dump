@@ -880,7 +880,7 @@
 {
 "classname" "trigger_heal"
 "count" "75"
-"message" "This pool has run out of healing energy."
+"message2" "This pool has run out of healing energy."
 // brush 0
 {
 ( -208 320 0 ) ( -208 321 0 ) ( -208 320 1 ) trigger [ 0 -1 0 0 ] [ -0 -0 -1 0 ] 0 1 1
