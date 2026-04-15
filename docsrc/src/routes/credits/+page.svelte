@@ -1,7 +1,9 @@
 <script>
-    import Page from "$components/Page.svelte"
+	import Page from '$components/Page.svelte';
 </script>
-
+<svelte:head>
+	<title>Credits and Acknowledgements</title>
+</svelte:head>
 <Page>
     <h1>Credits and Acknowledgements</h1>
 

@@ -4,13 +4,14 @@
     import Column from "$components/Column.svelte"
     import ManualNav from "./ManualNav.svelte";
 </script>
+
 <Page maxSize="none" scrollable={false}>
 <Columns>
-    <Column col="2">
+    <Column col="2" scrollable>
         <ManualNav></ManualNav>
     </Column>
     <Column col="1" classes="divider-vert"/>
-    <Column col="9">
+    <Column col="9" scrollable>
         <slot></slot>
     </Column>
 </Columns>

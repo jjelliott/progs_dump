@@ -3392,6 +3392,11 @@ a.text-error:visited {
     overflow: hidden
 }
 
+.container-noscroll-nonav{
+  max-height: 100vh;
+  overflow: hidden
+}
+
 .manual-indent-1{
         margin-left: 0.4rem !important;
 }

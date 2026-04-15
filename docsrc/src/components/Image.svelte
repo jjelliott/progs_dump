@@ -1,7 +1,9 @@
 <script>
-    import { asset } from '$app/paths';
+	import { isLocalManual } from '$lib/is-local-manual.js';
 
-		let {src, alt} = $props()
+
+	/** @type {{src: string, alt: string, style: string?}} */
+	let {src, alt, style =""} = $props()
 </script>
 
-<img src={asset(src)} alt={alt} style="width: 100%"/>
+<img src={isLocalManual() ? "." + src : src} alt={alt} style={style}/>

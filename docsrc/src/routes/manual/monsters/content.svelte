@@ -1,8 +1,10 @@
 <script>
-    import Card from "$components/Card.svelte";
-    import CardBody from "$components/CardBody.svelte";
-    import Image from "$components/Image.svelte";
-    import TextSection from "$components/TextSection.svelte";
+	import Card from '$components/Card.svelte';
+	import CardBody from '$components/CardBody.svelte';
+	import TextSection from '$components/TextSection.svelte';
+	import headerImage from '$lib/assets/monsters/header-image.png';
+	import gruntExample from '$lib/assets/monsters/grunt-example.png';
+	import FullWidthImage from '$components/FullWidthImage.svelte';
 </script>
 <h1 id="monsters">Monsters</h1>
 <Card color="warning">
@@ -12,7 +14,7 @@
         there is something different than they might expect.
     </CardBody>
 </Card>
-<Image src="/monsters/header-image.png" alt="picture of a shambler"/>
+<FullWidthImage src={headerImage} alt="picture of a shambler"/>
 <TextSection>
     Starting with version 2.x.x, progs_dump focuses heavily on monster customization. There are a
     lot of new key | values that can seem overwhelming at first glance. To make things easier to
@@ -27,7 +29,7 @@
     models, skins and sounds from various Quake mods dating back nearly 25 years. Info on where
     to find them is in Appendix B.
 </TextSection>
-<Image src="/monsters/grunt-example.png" alt="group of customized grunts"/>
+<FullWidthImage src={gruntExample} alt="group of customized grunts"/>
 <Card color="error">
     <CardBody>
         It’s important to note the limitations of monster customization before getting started:
