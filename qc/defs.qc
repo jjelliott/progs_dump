@@ -1059,3 +1059,15 @@ void(entity client, float density, vector color) csf_set;
 
 .entity infight_activator;
 .float		sounds2;
+
+.float stand_start;
+.float walk_start;
+.float run_start;
+.float melee_start;
+.float range_start;
+.float pain1_start;
+.float pain2_start;
+.float pain3_start;
+.float die1_start;
+.float die2_start;
+.float die3_start;

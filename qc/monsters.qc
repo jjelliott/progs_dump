@@ -516,3 +516,7 @@ void() swimmonster_start =
 	self.think = swimmonster_start_go;
 	total_monsters = total_monsters + 1;
 };
+
+float(.float field, float framenum) get_frame = {
+	return self.field + (framenum -1);
+}

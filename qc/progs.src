@@ -34,11 +34,15 @@ lights.qc //c0burn's excellent switchable lights
 fog.qc // fog triggers
 cshift.qc // background color shift controller
 
+monsters/demon/behavior.qc
+monsters/knight/behavior.qc
+monsters/grunt/behavior.qc
+
 ogre.qc
-demon.qc
+monsters/demon/spawn.qc
 shambler.qc
 knight.qc
-soldier.qc
+monsters/grunt/spawn.qc
 wizard.qc
 dog.qc
 zombie.qc //modified version of Ace_Dave's zombies from Rubicon2 source
