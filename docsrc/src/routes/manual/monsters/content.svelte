@@ -2,11 +2,33 @@
 	import Card from '$components/Card.svelte';
 	import CardBody from '$components/CardBody.svelte';
 	import TextSection from '$components/TextSection.svelte';
-	import headerImage from '$lib/assets/monsters/header-image.png';
-	import gruntExample from '$lib/assets/monsters/grunt-example.png';
+	import headerImage from '$lib/assets/manual/monsters/header-image.png';
+	import gruntExample from '$lib/assets/manual/monsters/grunt-example.png';
 	import FullWidthImage from '$components/FullWidthImage.svelte';
+  import Divider from '$components/Divider.svelte';
+  import MiscInfightSection from './MiscInfightSection.svelte';
+  import CustomProjectileSpeedSection from './CustomProjectileSpeedSection.svelte';
+  import HomingProjectilesSection from './HomingProjectilesSection.svelte';
+  import CustomMonsterModelsSection from './CustomMonsterModelsSection.svelte';
+  import CustomMonsterSoundsSection from './CustomMonsterSoundsSection.svelte';
+  import PainThresholdSection from './PainThresholdSection.svelte';
+  import KillableBossMonstersSection from './KillableBossMonstersSection.svelte';
+  import EnhancedZombiesSection from './EnhancedZombiesSection.svelte';
+  import EnhancedHellknightsSection from './EnhancedHellknightsSection.svelte';
+  import MonsterStylesSection from './MonsterStylesSection.svelte';
+  import GruntStylesSection from './GruntStylesSection.svelte';
+  import EnforcerStylesSection from './EnforcerStylesSection.svelte';
+  import HellknightStylesSection from './HellknightStylesSection.svelte';
+  import OgreStylesSection from './OgreStylesSection.svelte';
+  import ShamblerStylesSection from './ShamblerStylesSection.svelte';
+  import TurretModeSection from './TurretModeSection.svelte';
+  import FuncMonsterSpawnerSection from './FuncMonsterSpawnerSection.svelte';
+  import InfoMonsterSpawnpointSection from './InfoMonsterSpawnpointSection.svelte';
+  import MiscTeleporttrainSection from './MiscTeleporttrainSection.svelte';
+  import CustomMonsterExampleSection from './CustomMonsterExampleSection.svelte';
 </script>
 <h1 id="monsters">Monsters</h1>
+<Divider/>
 <Card color="warning">
     <CardBody>
         Some of the new features in progs_dump can drastically change the way the game
@@ -265,3 +287,23 @@
         </tr>
     </tbody>
 </table>
+<MiscInfightSection />
+<CustomProjectileSpeedSection />
+<HomingProjectilesSection />
+<CustomMonsterModelsSection />
+<CustomMonsterSoundsSection />
+<PainThresholdSection />
+<KillableBossMonstersSection />
+<EnhancedZombiesSection />
+<EnhancedHellknightsSection />
+<MonsterStylesSection />
+<GruntStylesSection />
+<EnforcerStylesSection />
+<HellknightStylesSection />
+<OgreStylesSection />
+<ShamblerStylesSection />
+<TurretModeSection />
+<FuncMonsterSpawnerSection />
+<InfoMonsterSpawnpointSection />
+<MiscTeleporttrainSection />
+<CustomMonsterExampleSection />

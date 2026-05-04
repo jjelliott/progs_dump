@@ -2,9 +2,48 @@
 	import Card from '$components/Card.svelte';
 	import CardBody from '$components/CardBody.svelte';
 	import ManualNavLink from './ManualNavLink.svelte';
+	import TextSection from '$components/TextSection.svelte';
+	import Divider from '$components/Divider.svelte';
 </script>
+<h1 id="getting-started">Getting Started</h1>
+<Divider/>
+<h2 id="requirements">Requirements</h2>
+We assume you have a working, registered Quake installation. Additionally, we recommend you have one of the following recommended Quake engines.
 
-<h1 id="installation">Installation</h1>
+<h2 id="recommended-engines">Recommended Quake Engines</h2>
+<TextSection>
+progs_dump requires a modern Quake engine and was developed with Quakespasm
+</TextSection>
+
+
+Recommended Quake Source Ports:
+<ul>
+	<li>Quakespasm (0.95.0 and above)
+		https://sourceforge.net/projects/quakespasm/files/
+		http://quakespasm.sourceforge.net/download.htm</li>
+	<li>Ironwail (0.6.0 and above)
+		https://github.com/andrei-drexler/ironwail/releases</li>
+<li>vkQuake (1.20.3 or above)
+	https://github.com/Novum/vkQuake/releases</li>
+	<li>Quakex
+		(a.k.a. Quake Enhanced, Quake Remastered and KEX Quake)
+		Steam
+		https://store.steampowered.com/app/2310/QUAKE/
+		Epic Games Store
+		https://store.epicgames.com/en-US/p/quake</li>
+	</ul>
+Other source ports:
+Quakespasm-Spiked (22-August-11 and above)
+http://triptohell.info/moodles/qss/
+FTEQW (Revision 6282 and above)
+https://www.fteqw.org/
+<Card color="error">
+	<CardBody>
+We no longer recommend Darkplaces or MarkV for progs_dump although many
+features will still work. These engines are untested and unsupported.
+	</CardBody>
+</Card>
+<h2 id="installation">Installation</h2>
 
 <Card classes="bg-warning">
 	<CardBody>
@@ -73,7 +112,7 @@
 Good luck and happy modding!
 <br />
 <br />
-<h3 id="dev-notes">Development Notes</h3>
+<h2 id="dev-notes">Development Notes</h2>
 <ul>
 	<li>You can launch Quake with <em>-nomonsters</em> on the command line to disable monsters in your
 		map for testing. You can also set

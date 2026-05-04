@@ -1,8 +1,8 @@
 <script>
 	import Image from '$components/Image.svelte';
 
-	/** @type {{src: string, alt: string}} */
-	let {src, alt} = $props()
+	/** @type {{src: string, alt: string, style?: string}} */
+	let { src, alt, style = "" } = $props();
 </script>
 
-<Image src={src} alt={alt} style="width: 100%"/>
+<Image {src} {alt} style="width: 100%; {style}" />
